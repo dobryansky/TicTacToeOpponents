@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/board3x3"
+        android:name="com.artem.myapplication.Board3x3"
+        android:label="fragment_board3x3"
+        tools:layout="@layout/fragment_board3x3" />
+    <fragment
+        android:id="@+id/board4x4"
+        android:name="com.artem.myapplication.Board4x4"
+        android:label="fragment_board4x4"
+        tools:layout="@layout/fragment_board4x4" />
+    <fragment
+        android:id="@+id/board5x5"
+        android:name="com.artem.myapplication.Board5x5"
+        android:label="fragment_board5x5"
+        tools:layout="@layout/fragment_board5x5" />
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.artem.myapplication.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_board3x3"
+            app:destination="@id/board3x3" />
+        <action
+            android:id="@+id/action_startFragment_to_board4x4"
+            app:destination="@id/board4x4" />
+        <action
+            android:id="@+id/action_startFragment_to_board5x5"
+            app:destination="@id/board5x5" />
+    </fragment>
+    <fragment
+        android:id="@+id/WInFragment"
+        android:name="com.artem.myapplication.WinFragment"
+        android:label="fragment_w_in"
+        tools:layout="@layout/fragment_win" />
+    <fragment
+        android:id="@+id/fragmentSettings"
+        android:name="com.artem.myapplication.FragmentSettings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/scoresFragment"
+        android:name="com.artem.myapplication.ScoresFragment"
+        android:label="fragment_scores"
+        tools:layout="@layout/fragment_scores" />
+</navigation>
