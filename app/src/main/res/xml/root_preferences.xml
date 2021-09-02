@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:title="Enable Night Mode">
-        <CheckBoxPreference
-            android:title="Night mode"
-            android:key="Night"
-            android:defaultValue="false"
-            android:summaryOn="Night mode is activated"
-            android:summaryOff="Night mode is deactivated"/>
+        <ListPreference
+            app:defaultValue="@string/dark_mode_def_value"
+            app:entries="@array/dark_mode_entries"
+            app:entryValues="@array/dark_mode_values"
+            app:key="@string/dark_mode"
+            app:title="@string/dark_mode"
+            app:useSimpleSummaryProvider="true"
+            android:icon="@drawable/ic_dark_mode"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="Choose players">
-
+        <ListPreference
+            android:dialogIcon="@drawable/ic_launcher_foreground"
+            android:entries="@array/arrayOpponents"
+            android:entryValues="@array/arrayOpponentsId"
+            android:icon="@drawable/ic_launcher_background"
+            android:key="opponents"
+            android:summary="Putin/Navalny"
+            android:title="List of Opponents"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
+
 
 </PreferenceScreen>
