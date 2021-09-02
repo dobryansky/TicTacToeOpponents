@@ -1,17 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Board3x3">
+    tools:context=".MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Board3x3"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="50sp"/>
+        android:id="@+id/txtPlayer1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/txtPlayer1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.026" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/txtScore1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/txtScore1"
+        app:layout_constraintEnd_toEndOf="@+id/txtPlayer1"
+        app:layout_constraintStart_toStartOf="@+id/txtPlayer1"
+        app:layout_constraintTop_toBottomOf="@+id/txtPlayer1" />
+
+    <TextView
+        android:id="@+id/txtPlayer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="@string/txtPlayer2"
+        app:layout_constraintBottom_toBottomOf="@+id/txtPlayer1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtPlayer1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtScore2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/txtScore2"
+        app:layout_constraintBottom_toBottomOf="@+id/txtScore1"
+        app:layout_constraintEnd_toEndOf="@+id/txtPlayer2"
+        app:layout_constraintStart_toStartOf="@+id/txtPlayer2"
+        app:layout_constraintTop_toBottomOf="@+id/txtPlayer2" />
+
+    <TextView
+        android:id="@+id/txtInfoTable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@color/purple_200"
+        android:gravity="center"
+        android:text="@string/txtInfoTable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtScore1" />
+
+    <ImageButton
+        android:id="@+id/imgBut1"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/navalny"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtInfoTable"
+
+        />
+    <ImageButton
+        android:id="@+id/imgBut2"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:layout_constraintStart_toEndOf="@+id/imgBut1"
+        app:layout_constraintTop_toTopOf="@+id/imgBut1"
+        android:scaleType="fitCenter"/>
+
+
+    <ImageButton
+        android:id="@+id/imgBut3"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:layout_constraintStart_toEndOf="@+id/imgBut2"
+        app:layout_constraintTop_toTopOf="@+id/imgBut2"
+        android:scaleType="fitCenter"/>
+    <ImageButton
+        android:id="@+id/imgBut4"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBut1"
+        android:scaleType="fitCenter" />
+    <ImageButton
+        android:id="@+id/imgBut5"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:layout_constraintStart_toEndOf="@+id/imgBut4"
+        app:layout_constraintTop_toTopOf="@+id/imgBut4"
+        android:scaleType="fitCenter" />
+    <ImageButton
+        android:id="@+id/imgBut6"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:layout_constraintStart_toEndOf="@+id/imgBut5"
+        app:layout_constraintTop_toTopOf="@+id/imgBut5"
+        android:scaleType="fitCenter" />
+    <ImageButton
+        android:id="@+id/imgBut7"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBut4"
+        android:scaleType="fitCenter" />
+    <ImageButton
+        android:id="@+id/imgBut8"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:layout_constraintStart_toEndOf="@+id/imgBut7"
+        app:layout_constraintTop_toTopOf="@+id/imgBut7"
+        android:scaleType="fitCenter" />
+    <ImageButton
+        android:id="@+id/imgBut9"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:layout_constraintStart_toEndOf="@+id/imgBut8"
+        app:layout_constraintTop_toTopOf="@+id/imgBut8"
+        android:scaleType="fitCenter" />
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/btnReset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgBut8" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

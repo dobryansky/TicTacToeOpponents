@@ -5,5 +5,12 @@
     <string name="defaultValueListPreference">Putin/Navalny</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="dark_mode_def_value">1</string>
+    <string name="txtPlayer1">Player 1</string>
+    <string name="txtPlayer2">Player 2</string>
+    <string name="txtScore1">Score 1</string>
+    <string name="txtScore2">Score 2</string>
+    <string name="txtInfoTable">TextView</string>
+    <string name="btnReset">Reset Game</string>
+    <string name="settings">Settings</string>
 
 </resources>
