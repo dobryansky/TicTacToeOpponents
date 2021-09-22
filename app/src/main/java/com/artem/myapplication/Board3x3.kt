@@ -1,11 +1,13 @@
 package com.artem.myapplication
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.core.content.res.ResourcesCompat
 import com.artem.myapplication.databinding.FragmentBoard3x3Binding
 
 
@@ -15,9 +17,7 @@ class Board3x3 : Fragment() {
     var gameBoard: Array<Array<Int>> = Array(3) { Array(3) { 5 } }
 
 
-
-
-     //  arrayOf(binding.imgBut1,binding.imgBut2,binding.imgBut3)
+    //  arrayOf(binding.imgBut1,binding.imgBut2,binding.imgBut3)
     var currentPlayer = 1
     private var logicGame = LogicGame(gameBoard, 3)
 
@@ -40,62 +40,51 @@ class Board3x3 : Fragment() {
     override fun onResume() {
         super.onResume()
         initListeners()
-        if (logicGame.checkDraw()){
+        if (logicGame.checkDraw()) {
             binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
         }
     }
 
     fun initListeners() {
         val btnArray = arrayOf(
-            arrayOf(binding.imgBut1,binding.imgBut2,binding.imgBut3),
-            arrayOf(binding.imgBut4,binding.imgBut5,binding.imgBut6),
-            arrayOf(binding.imgBut7,binding.imgBut8,binding.imgBut9)
+            arrayOf(binding.imgBut1, binding.imgBut2, binding.imgBut3),
+            arrayOf(binding.imgBut4, binding.imgBut5, binding.imgBut6),
+            arrayOf(binding.imgBut7, binding.imgBut8, binding.imgBut9)
         )
 
 
 
         for (i in 0 until btnArray[0].size) {
-            for (j in 0 until btnArray[0].size ){
-                    btnArray[i][j].setOnClickListener {
-                        btnArray[i][j].setImageResource(currentPic)
-                        textTurn()
-                        if (currentPlayer == 1) {
-                            gameBoard[i][j] = 1
-                            println(logicGame.checkWin())
-                            if (logicGame.checkWin()) {
-                                winPlayer()
-                            }
-                            if (logicGame.checkDraw()){
-                                binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                            }
-
-                        } else {
-                            gameBoard[i][j] = 0
-                            println(logicGame.checkWin())
-                            if (logicGame.checkWin()) {
-                                winPlayer()
-                            }
-                            if (logicGame.checkDraw()){
-                                binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                            }
-
+            for (j in 0 until btnArray[0].size) {
+                btnArray[i][j].setOnClickListener {
+                    btnArray[i][j].setImageResource(currentPic)
+                    textTurn()
+                    if (currentPlayer == 1) {
+                        gameBoard[i][j] = 1
+                        println(logicGame.checkWin())
+                        if (logicGame.checkWin()) {
+                            winPlayer()
+                        } else if (logicGame.checkDraw()) {
+                            binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
                         }
-                        swapPic()
-                        showGameBoard(gameBoard)
-                        btnArray[i][j].isClickable = false
+
+                    } else {
+                        gameBoard[i][j] = 0
+                        println(logicGame.checkWin())
+                        if (logicGame.checkWin()) {
+                            winPlayer()
+                        } else if (logicGame.checkDraw()) {
+                            binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
+                        }
+
                     }
+                    swapPic()
+                    //showGameBoard(gameBoard)
+                    btnArray[i][j].isClickable = false
+                }
 
+            }
         }
-    }
-
-
-
-
-
-
-
-
-
 
 
         /*binding.txtInfoTable.text = "Ходит Навальный"
@@ -406,15 +395,18 @@ class Board3x3 : Fragment() {
         binding.imgBut7.setImageResource(0)
         binding.imgBut8.setImageResource(0)
         binding.imgBut9.setImageResource(0)
-        binding.imgBut1.setBackgroundColor(resources.getColor(R.color.greybackgroung))
-        binding.imgBut2.setBackgroundColor(resources.getColor(R.color.greybackgroung))
-        binding.imgBut3.setBackgroundColor(resources.getColor(R.color.greybackgroung))
-        binding.imgBut4.setBackgroundColor(resources.getColor(R.color.greybackgroung))
-        binding.imgBut5.setBackgroundColor(resources.getColor(R.color.greybackgroung))
-        binding.imgBut6.setBackgroundColor(resources.getColor(R.color.greybackgroung))
-        binding.imgBut7.setBackgroundColor(resources.getColor(R.color.greybackgroung))
-        binding.imgBut8.setBackgroundColor(resources.getColor(R.color.greybackgroung))
-        binding.imgBut9.setBackgroundColor(resources.getColor(R.color.greybackgroung))
+
+        binding.imgBut1.background = resources.getDrawable(R.drawable.tricolor)
+        binding.imgBut2.background = resources.getDrawable(R.drawable.tricolor)
+        binding.imgBut3.background = resources.getDrawable(R.drawable.tricolor)
+        binding.imgBut4.background = resources.getDrawable(R.drawable.tricolor)
+        binding.imgBut5.background = resources.getDrawable(R.drawable.tricolor)
+        binding.imgBut6.background = resources.getDrawable(R.drawable.tricolor)
+        binding.imgBut7.background = resources.getDrawable(R.drawable.tricolor)
+        binding.imgBut8.background = resources.getDrawable(R.drawable.tricolor)
+        binding.imgBut9.background = resources.getDrawable(R.drawable.tricolor)
+
+
         binding.imgBut1.isClickable = true
         binding.imgBut2.isClickable = true
         binding.imgBut3.isClickable = true
@@ -456,17 +448,24 @@ class Board3x3 : Fragment() {
 
     fun winPlayer() {
         val btnArray = arrayOf(
-            arrayOf(binding.imgBut1,binding.imgBut2,binding.imgBut3),
-            arrayOf(binding.imgBut4,binding.imgBut5,binding.imgBut6),
-            arrayOf(binding.imgBut7,binding.imgBut8,binding.imgBut9)
+            arrayOf(binding.imgBut1, binding.imgBut2, binding.imgBut3),
+            arrayOf(binding.imgBut4, binding.imgBut5, binding.imgBut6),
+            arrayOf(binding.imgBut7, binding.imgBut8, binding.imgBut9)
         )
+        showGameBoard(logicGame.winArray)
         if (currentPlayer == 1) {
             binding.txtInfoTable.text = "Победил Навальный"
 
             for (i in 0 until logicGame.winArray.size) {
                 for (j in 0 until logicGame.winArray.size) {
-                    if(logicGame.winArray[i][j]==1){
+                    if (logicGame.winArray[i][j] == 1) {
                         btnArray[i][j].setBackgroundColor(resources.getColor(R.color.green))
+                    }
+                    if(logicGame.gameBoard[i][j]==1) {
+                        btnArray[i][j].setImageResource(R.drawable.navalnysmile)
+                    }
+                    if(logicGame.gameBoard[i][j]==0) {
+                        btnArray[i][j].setImageResource(R.drawable.putinjail)
                     }
 
                 }
@@ -478,8 +477,14 @@ class Board3x3 : Fragment() {
             binding.txtInfoTable.text = "Победил Путин"
             for (i in 0 until logicGame.winArray.size) {
                 for (j in 0 until logicGame.winArray.size) {
-                    if(logicGame.winArray[i][j]==1){
+                    if (logicGame.winArray[i][j] == 1) {
                         btnArray[i][j].setBackgroundColor(resources.getColor(R.color.green))
+                    }
+                    if(logicGame.gameBoard[i][j]==0) {
+                        btnArray[i][j].setImageResource(R.drawable.putinsmile)
+                    }
+                    if(logicGame.gameBoard[i][j]==1) {
+                        btnArray[i][j].setImageResource(R.drawable.navalnyjail)
                     }
 
                 }

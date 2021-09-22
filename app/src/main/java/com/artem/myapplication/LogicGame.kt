@@ -3,7 +3,7 @@ package com.artem.myapplication
 class LogicGame(var gameBoard: Array<Array<Int>>, val numToWin: Int) {
 
 
-    var winArray: Array<Array<Int>> = Array(3) { Array(3) { 0 } }
+    var winArray: Array<Array<Int>> = Array(3) { Array(3) { 5 } }
 
     fun checkWin(): Boolean {
         return checkColumns() || checkRows() || checkDiagonal()
@@ -29,11 +29,12 @@ class LogicGame(var gameBoard: Array<Array<Int>>, val numToWin: Int) {
                 count++
             } else {
                 count = 0
-                winArray = Array(3) { Array(3) { 0 } }
+                winArray = Array(3) { Array(3) { 5 } }
             }
             if (count == (numToWin - 1)) return true
         }
         count = 0
+        winArray = Array(3) { Array(3) { 5 } }
         for (i in 0 until gameBoard[0].size - 1) {
 
             if (gameBoard[i][gameBoard[0].size - 1 - i] == gameBoard[i + 1][gameBoard[0].size - 2 - i] && ((gameBoard[i][gameBoard[0].size - 1 - i] == 0) || gameBoard[i][gameBoard[0].size - 1 - i] == 1)) {
@@ -42,7 +43,7 @@ class LogicGame(var gameBoard: Array<Array<Int>>, val numToWin: Int) {
                 count++
             } else {
                 count = 0
-                winArray = Array(3) { Array(3) { 0 } }
+                winArray = Array(3) { Array(3) { 5 } }
             }
             if (count == (numToWin - 1)) return true
         }
@@ -61,7 +62,7 @@ class LogicGame(var gameBoard: Array<Array<Int>>, val numToWin: Int) {
                     count++
                 } else {
                     count = 0
-                    winArray = Array(3) { Array(3) { 0 } }
+                    winArray = Array(3) { Array(3) { 5 } }
                 }
                 if (count == (numToWin - 1)) {
                     return true
@@ -85,7 +86,7 @@ class LogicGame(var gameBoard: Array<Array<Int>>, val numToWin: Int) {
                     count++
                 } else {
                     count = 0
-                    winArray = Array(3) { Array(3) { 0 } }
+                    winArray = Array(3) { Array(3) { 5 } }
                 }
                 if (count == (numToWin - 1)) {
                     return true
