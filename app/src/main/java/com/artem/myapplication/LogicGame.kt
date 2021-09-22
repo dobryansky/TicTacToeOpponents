@@ -3,29 +3,33 @@ package com.artem.myapplication
 class LogicGame(var gameBoard: Array<Array<Int>>, val numToWin: Int) {
 
 
+    var winArray: Array<Array<Int>> = Array(3) { Array(3) { 0 } }
 
     fun checkWin(): Boolean {
         return checkColumns() || checkRows() || checkDiagonal()
-    }
 
-    fun checkDraw(): Boolean {
-        for (i in 0 until gameBoard[0].size ){
-            for (j in 0 until gameBoard[0].size ){
-                if(gameBoard[i][j]==5){
-                    return false
+    }
+    fun printWinArray(){
+        if(checkWin()) {
+            for (i in 0 until winArray.size) {
+                for (j in 0 until winArray.size) {
+                    print("${winArray[i][j]} ")
                 }
+                println()
             }
         }
-        return true
     }
 
     fun checkDiagonal(): Boolean {
         var count = 0
         for (i in 0 until gameBoard[0].size - 1) {
             if (gameBoard[i][i] == gameBoard[i + 1][i + 1] && (gameBoard[i][i] == 0 || gameBoard[i][i] == 1)) {
+                winArray[i][i]=1
+                winArray[i + 1][i + 1]=1
                 count++
             } else {
                 count = 0
+                winArray = Array(3) { Array(3) { 0 } }
             }
             if (count == (numToWin - 1)) return true
         }
@@ -33,9 +37,12 @@ class LogicGame(var gameBoard: Array<Array<Int>>, val numToWin: Int) {
         for (i in 0 until gameBoard[0].size - 1) {
 
             if (gameBoard[i][gameBoard[0].size - 1 - i] == gameBoard[i + 1][gameBoard[0].size - 2 - i] && ((gameBoard[i][gameBoard[0].size - 1 - i] == 0) || gameBoard[i][gameBoard[0].size - 1 - i] == 1)) {
+                winArray[i][gameBoard[0].size - 1 - i]=1
+                winArray[i + 1][gameBoard[0].size - 2 - i]=1
                 count++
             } else {
                 count = 0
+                winArray = Array(3) { Array(3) { 0 } }
             }
             if (count == (numToWin - 1)) return true
         }
@@ -49,9 +56,12 @@ class LogicGame(var gameBoard: Array<Array<Int>>, val numToWin: Int) {
             for (j in 0 until gameBoard[0].size - 1) {
 
                 if (gameBoard[i][j] == gameBoard[i][j + 1] && ((gameBoard[i][j] == 0) || gameBoard[i][j] == 1)) {
+                    winArray[i][j]=1
+                    winArray[i][j + 1]=1
                     count++
                 } else {
                     count = 0
+                    winArray = Array(3) { Array(3) { 0 } }
                 }
                 if (count == (numToWin - 1)) {
                     return true
@@ -70,9 +80,12 @@ class LogicGame(var gameBoard: Array<Array<Int>>, val numToWin: Int) {
             for (i in 0 until gameBoard[0].size - 1) {
 
                 if (gameBoard[i][j] == gameBoard[i + 1][j] && (gameBoard[i][j] == 0 || gameBoard[i][j] == 1)) {
+                    winArray[i][j]=1
+                    winArray[i + 1][j]=1
                     count++
                 } else {
                     count = 0
+                    winArray = Array(3) { Array(3) { 0 } }
                 }
                 if (count == (numToWin - 1)) {
                     return true
@@ -81,5 +94,17 @@ class LogicGame(var gameBoard: Array<Array<Int>>, val numToWin: Int) {
             count = 0
         }
         return false
+    }
+
+
+    fun checkDraw(): Boolean {
+        for (i in 0 until gameBoard[0].size ){
+            for (j in 0 until gameBoard[0].size ){
+                if(gameBoard[i][j]==5){
+                    return false
+                }
+            }
+        }
+        return true
     }
 }
