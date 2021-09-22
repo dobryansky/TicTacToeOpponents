@@ -12,5 +12,7 @@
     <string name="txtInfoTable">TextView</string>
     <string name="btnReset">Reset Game</string>
     <string name="settings">Settings</string>
+    <string name="putinTxt">Путин</string>
+    <string name="navalnyTxt">Навальный</string>
 
 </resources>

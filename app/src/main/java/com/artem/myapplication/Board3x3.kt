@@ -1,28 +1,29 @@
 package com.artem.myapplication
 
 import android.graphics.drawable.Drawable
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.ImageButton
 import androidx.core.content.res.ResourcesCompat
 import com.artem.myapplication.databinding.FragmentBoard3x3Binding
+import java.util.*
 
 
 class Board3x3 : Fragment() {
     private var _binding: FragmentBoard3x3Binding? = null
     private val binding get() = _binding!!
     var gameBoard: Array<Array<Int>> = Array(3) { Array(3) { 5 } }
-
-
-    //  arrayOf(binding.imgBut1,binding.imgBut2,binding.imgBut3)
     var currentPlayer = 1
+    var countWinPutin=0
+    var countWinNavalny=0
     private var logicGame = LogicGame(gameBoard, 3)
-
     var currentPic = R.drawable.navalny
-    var gameOver = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,11 +31,9 @@ class Board3x3 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentBoard3x3Binding.inflate(inflater, container, false)
-
         val view = binding.root
+        //   (activity as MainActivity).supportActionBar?.hide()
         return view
-
-
     }
 
     override fun onResume() {
@@ -52,8 +51,6 @@ class Board3x3 : Fragment() {
             arrayOf(binding.imgBut7, binding.imgBut8, binding.imgBut9)
         )
 
-
-
         for (i in 0 until btnArray[0].size) {
             for (j in 0 until btnArray[0].size) {
                 btnArray[i][j].setOnClickListener {
@@ -67,6 +64,7 @@ class Board3x3 : Fragment() {
                         } else if (logicGame.checkDraw()) {
                             binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
                         }
+
 
                     } else {
                         gameBoard[i][j] = 0
@@ -85,276 +83,6 @@ class Board3x3 : Fragment() {
 
             }
         }
-
-
-        /*binding.txtInfoTable.text = "Ходит Навальный"
-
-        binding.imgBut1.setOnClickListener {
-            binding.imgBut1.setImageResource(currentPic)
-            textTurn()
-            if (currentPlayer == 1) {
-                gameBoard[0][0] = 1
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            } else {
-                gameBoard[0][0] = 0
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            }
-            swapPic()
-            showGameBoard(gameBoard)
-            binding.imgBut1.isClickable = false
-
-
-        }
-        binding.imgBut2.setOnClickListener {
-            binding.imgBut2.setImageResource(currentPic)
-            textTurn()
-            if (currentPlayer == 1) {
-                gameBoard[0][1] = 1
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            } else {
-                gameBoard[0][1] = 0
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            }
-            swapPic()
-
-            showGameBoard(gameBoard)
-            binding.imgBut2.isClickable = false
-
-
-        }
-        binding.imgBut3.setOnClickListener {
-            binding.imgBut3.setImageResource(currentPic)
-            textTurn()
-            if (currentPlayer == 1) {
-                gameBoard[0][2] = 1
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            } else {
-                gameBoard[0][2] = 0
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            }
-            swapPic()
-            showGameBoard(gameBoard)
-            binding.imgBut3.isClickable = false
-
-
-        }
-        binding.imgBut4.setOnClickListener {
-            binding.imgBut4.setImageResource(currentPic)
-            textTurn()
-            if (currentPlayer == 1) {
-                gameBoard[1][0] = 1
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            } else {
-                gameBoard[1][0] = 0
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            }
-            swapPic()
-            showGameBoard(gameBoard)
-            binding.imgBut4.isClickable = false
-
-        }
-        binding.imgBut5.setOnClickListener {
-            binding.imgBut5.setImageResource(currentPic)
-            textTurn()
-            if (currentPlayer == 1) {
-                gameBoard[1][1] = 1
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            } else {
-                gameBoard[1][1] = 0
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            }
-            swapPic()
-            showGameBoard(gameBoard)
-            binding.imgBut5.isClickable = false
-
-
-        }
-        binding.imgBut6.setOnClickListener {
-            binding.imgBut6.setImageResource(currentPic)
-            textTurn()
-            if (currentPlayer == 1) {
-                gameBoard[1][2] = 1
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            } else {
-                gameBoard[1][2] = 0
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            }
-            swapPic()
-            showGameBoard(gameBoard)
-            binding.imgBut6.isClickable = false
-
-        }
-        binding.imgBut7.setOnClickListener {
-            binding.imgBut7.setImageResource(currentPic)
-            textTurn()
-            if (currentPlayer == 1) {
-                gameBoard[2][0] = 1
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            } else {
-                gameBoard[2][0] = 0
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            }
-            swapPic()
-            showGameBoard(gameBoard)
-            binding.imgBut7.isClickable = false
-
-        }
-        binding.imgBut8.setOnClickListener {
-            binding.imgBut8.setImageResource(currentPic)
-            textTurn()
-            if (currentPlayer == 1) {
-                gameBoard[2][1] = 1
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            } else {
-                gameBoard[2][1] = 0
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            }
-            swapPic()
-            showGameBoard(gameBoard)
-            binding.imgBut8.isClickable = false
-
-        }
-        binding.imgBut9.setOnClickListener {
-            binding.imgBut9.setImageResource(currentPic)
-            textTurn()
-            if (currentPlayer == 1) {
-                gameBoard[2][2] = 1
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            } else {
-                gameBoard[2][2] = 0
-                println(logicGame.checkWin())
-                if (logicGame.checkWin()) {
-                    winPlayer()
-                }
-                if (logicGame.checkDraw()){
-                    binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
-                }
-
-            }
-            swapPic()
-            showGameBoard(gameBoard)
-            binding.imgBut9.isClickable = false
-
-        }*/
 
         binding.btnReset.setOnClickListener {
             gameBoard = Array(3) { Array(3) { 5 } }
@@ -386,36 +114,20 @@ class Board3x3 : Fragment() {
     }
 
     fun resetBoard() {
-        binding.imgBut1.setImageResource(0)
-        binding.imgBut2.setImageResource(0)
-        binding.imgBut3.setImageResource(0)
-        binding.imgBut4.setImageResource(0)
-        binding.imgBut5.setImageResource(0)
-        binding.imgBut6.setImageResource(0)
-        binding.imgBut7.setImageResource(0)
-        binding.imgBut8.setImageResource(0)
-        binding.imgBut9.setImageResource(0)
+        val btnArray = arrayOf(
+            arrayOf(binding.imgBut1, binding.imgBut2, binding.imgBut3),
+            arrayOf(binding.imgBut4, binding.imgBut5, binding.imgBut6),
+            arrayOf(binding.imgBut7, binding.imgBut8, binding.imgBut9)
+        )
 
-        binding.imgBut1.background = resources.getDrawable(R.drawable.tricolor)
-        binding.imgBut2.background = resources.getDrawable(R.drawable.tricolor)
-        binding.imgBut3.background = resources.getDrawable(R.drawable.tricolor)
-        binding.imgBut4.background = resources.getDrawable(R.drawable.tricolor)
-        binding.imgBut5.background = resources.getDrawable(R.drawable.tricolor)
-        binding.imgBut6.background = resources.getDrawable(R.drawable.tricolor)
-        binding.imgBut7.background = resources.getDrawable(R.drawable.tricolor)
-        binding.imgBut8.background = resources.getDrawable(R.drawable.tricolor)
-        binding.imgBut9.background = resources.getDrawable(R.drawable.tricolor)
+        for (i in 0 until btnArray[0].size) {
+            for (j in 0 until btnArray[0].size) {
+                btnArray[i][j].setImageResource(0)
+                btnArray[i][j].background = resources.getDrawable(R.drawable.tricolor)
+                btnArray[i][j].isClickable = true
+            }
+        }
 
-
-        binding.imgBut1.isClickable = true
-        binding.imgBut2.isClickable = true
-        binding.imgBut3.isClickable = true
-        binding.imgBut4.isClickable = true
-        binding.imgBut5.isClickable = true
-        binding.imgBut6.isClickable = true
-        binding.imgBut7.isClickable = true
-        binding.imgBut8.isClickable = true
-        binding.imgBut9.isClickable = true
         currentPlayer = 1
         currentPic = R.drawable.navalny
         gameBoard = Array(3) { Array(3) { 5 } }
@@ -461,17 +173,19 @@ class Board3x3 : Fragment() {
                     if (logicGame.winArray[i][j] == 1) {
                         btnArray[i][j].setBackgroundColor(resources.getColor(R.color.green))
                     }
-                    if(logicGame.gameBoard[i][j]==1) {
+                    if (logicGame.gameBoard[i][j] == 1) {
                         btnArray[i][j].setImageResource(R.drawable.navalnysmile)
                     }
-                    if(logicGame.gameBoard[i][j]==0) {
+                    if (logicGame.gameBoard[i][j] == 0) {
                         btnArray[i][j].setImageResource(R.drawable.putinjail)
                     }
 
                 }
 
             }
-
+            countWinNavalny++
+            binding.txtScore1.text=countWinNavalny.toString()
+            playSound()
             gameOver()
         } else {
             binding.txtInfoTable.text = "Победил Путин"
@@ -480,17 +194,46 @@ class Board3x3 : Fragment() {
                     if (logicGame.winArray[i][j] == 1) {
                         btnArray[i][j].setBackgroundColor(resources.getColor(R.color.green))
                     }
-                    if(logicGame.gameBoard[i][j]==0) {
+                    if (logicGame.gameBoard[i][j] == 0) {
                         btnArray[i][j].setImageResource(R.drawable.putinsmile)
                     }
-                    if(logicGame.gameBoard[i][j]==1) {
+                    if (logicGame.gameBoard[i][j] == 1) {
                         btnArray[i][j].setImageResource(R.drawable.navalnyjail)
                     }
 
                 }
 
             }
+            countWinPutin++
+            binding.txtScore2.text=countWinPutin.toString()
+            playSound()
             gameOver()
+        }
+    }
+
+    fun playSound() {
+        val navalnySound =
+            arrayOf(R.raw.navalny_corupcia, R.raw.navalny_dalshe, R.raw.navalny_sidet)
+        val putinSound = arrayOf(R.raw.putin_derzki, R.raw.putin_parasha)
+
+        if (currentPlayer == 1) {
+
+            val mp: MediaPlayer = MediaPlayer.create(context, navalnySound[(0..2).random()])
+            mp.setOnPreparedListener {
+                mp.start()
+            }
+            mp.setOnCompletionListener {
+                mp.release()
+            }
+        } else {
+            val mp: MediaPlayer = MediaPlayer.create(context, putinSound[(0..1).random()])
+            mp.setOnPreparedListener {
+                mp.start()
+            }
+            mp.setOnCompletionListener {
+                mp.release()
+            }
+
         }
     }
 
