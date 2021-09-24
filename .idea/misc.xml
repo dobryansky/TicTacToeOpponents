@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TicTacToePutin/app/src/main/res/drawable-mdpi/green_win.xml" value="0.32135416666666666" />
         <entry key="..\:/TicTacToePutin/app/src/main/res/drawable/tricolor.xml" value="0.3828125" />
         <entry key="..\:/TicTacToePutin/app/src/main/res/layout/activity_main.xml" value="0.36102564102564105" />
         <entry key="..\:/TicTacToePutin/app/src/main/res/layout/fragment_board3x3.xml" value="0.36666666666666664" />
@@ -12,6 +13,7 @@
         <entry key="..\:/TicTacToePutin/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
         <entry key="..\:/TicTacToePutin/app/src/main/res/layout/fragment_start.xml" value="0.36666666666666664" />
         <entry key="..\:/TicTacToePutin/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/TicTacToePutin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21875" />
         <entry key="..\:/TicTacToePutin/app/src/main/res/xml/root_preferences.xml" value="0.36666666666666664" />
       </map>
     </option>

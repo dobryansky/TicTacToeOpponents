@@ -10,6 +10,10 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.ImageButton
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
 import com.artem.myapplication.databinding.FragmentBoard3x3Binding
 import java.util.*
 
@@ -19,8 +23,8 @@ class Board3x3 : Fragment() {
     private val binding get() = _binding!!
     var gameBoard: Array<Array<Int>> = Array(3) { Array(3) { 5 } }
     var currentPlayer = 1
-    var countWinPutin=0
-    var countWinNavalny=0
+    var countWinPutin = 0
+    var countWinNavalny = 0
     private var logicGame = LogicGame(gameBoard, 3)
     var currentPic = R.drawable.navalny
 
@@ -32,7 +36,9 @@ class Board3x3 : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentBoard3x3Binding.inflate(inflater, container, false)
         val view = binding.root
-        //   (activity as MainActivity).supportActionBar?.hide()
+        // val action:NavDirections=Board3x3Directions.actionBoard3x3ToScoresFragment4(countWinPutin.toString(),countWinNavalny.toString())
+        //  Navigation.findNavController(view).navigate(action)
+
         return view
     }
 
@@ -40,9 +46,21 @@ class Board3x3 : Fragment() {
         super.onResume()
         initListeners()
         if (logicGame.checkDraw()) {
-            binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
+            binding.txtInfoTable.text = "Ничья"
+            playSoundDraw()
         }
+
+        // fragmentManager?.beginTransaction()?.replace(R.id.fragmentContainerView,scoreFragment)?.commit()
+
     }
+    /*fun putBundle(){
+        val bundle=Bundle()
+        bundle.putString("scoreNavalny",countWinNavalny.toString())
+        bundle.putString("scorePutin",countWinPutin.toString())
+        val scoreFragment=ScoresFragment()
+        scoreFragment.arguments=bundle
+    }*/
+
 
     fun initListeners() {
         val btnArray = arrayOf(
@@ -62,7 +80,8 @@ class Board3x3 : Fragment() {
                         if (logicGame.checkWin()) {
                             winPlayer()
                         } else if (logicGame.checkDraw()) {
-                            binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
+                            binding.txtInfoTable.text = "Ничья"
+                            playSoundDraw()
                         }
 
 
@@ -72,7 +91,8 @@ class Board3x3 : Fragment() {
                         if (logicGame.checkWin()) {
                             winPlayer()
                         } else if (logicGame.checkDraw()) {
-                            binding.txtInfoTable.text = "Ничья,ёпта!!!!!"
+                            binding.txtInfoTable.text = "Ничья"
+                            playSoundDraw()
                         }
 
                     }
@@ -147,15 +167,17 @@ class Board3x3 : Fragment() {
     }
 
     fun gameOver() {
-        binding.imgBut1.isClickable = false
-        binding.imgBut2.isClickable = false
-        binding.imgBut3.isClickable = false
-        binding.imgBut4.isClickable = false
-        binding.imgBut5.isClickable = false
-        binding.imgBut6.isClickable = false
-        binding.imgBut7.isClickable = false
-        binding.imgBut8.isClickable = false
-        binding.imgBut9.isClickable = false
+        val btnArray = arrayOf(
+            arrayOf(binding.imgBut1, binding.imgBut2, binding.imgBut3),
+            arrayOf(binding.imgBut4, binding.imgBut5, binding.imgBut6),
+            arrayOf(binding.imgBut7, binding.imgBut8, binding.imgBut9)
+        )
+        for (i in 0 until logicGame.winArray.size) {
+            for (j in 0 until logicGame.winArray.size) {
+                btnArray[i][j].isClickable = false
+            }
+        }
+
     }
 
     fun winPlayer() {
@@ -171,7 +193,9 @@ class Board3x3 : Fragment() {
             for (i in 0 until logicGame.winArray.size) {
                 for (j in 0 until logicGame.winArray.size) {
                     if (logicGame.winArray[i][j] == 1) {
-                        btnArray[i][j].setBackgroundColor(resources.getColor(R.color.green))
+                        //btnArray[i][j].setBackgroundColor(resources.getColor(R.color.green))
+                        btnArray[i][j].background = resources.getDrawable(R.drawable.green_win)
+
                     }
                     if (logicGame.gameBoard[i][j] == 1) {
                         btnArray[i][j].setImageResource(R.drawable.navalnysmile)
@@ -184,7 +208,8 @@ class Board3x3 : Fragment() {
 
             }
             countWinNavalny++
-            binding.txtScore1.text=countWinNavalny.toString()
+            //putBundle()
+            binding.txtScore1.text = countWinNavalny.toString()
             playSound()
             gameOver()
         } else {
@@ -192,7 +217,8 @@ class Board3x3 : Fragment() {
             for (i in 0 until logicGame.winArray.size) {
                 for (j in 0 until logicGame.winArray.size) {
                     if (logicGame.winArray[i][j] == 1) {
-                        btnArray[i][j].setBackgroundColor(resources.getColor(R.color.green))
+                        //btnArray[i][j].setBackgroundColor(resources.getColor(R.color.green))
+                        btnArray[i][j].background = resources.getDrawable(R.drawable.green_win)
                     }
                     if (logicGame.gameBoard[i][j] == 0) {
                         btnArray[i][j].setImageResource(R.drawable.putinsmile)
@@ -205,7 +231,8 @@ class Board3x3 : Fragment() {
 
             }
             countWinPutin++
-            binding.txtScore2.text=countWinPutin.toString()
+            // putBundle()
+            binding.txtScore2.text = countWinPutin.toString()
             playSound()
             gameOver()
         }
@@ -214,7 +241,7 @@ class Board3x3 : Fragment() {
     fun playSound() {
         val navalnySound =
             arrayOf(R.raw.navalny_corupcia, R.raw.navalny_dalshe, R.raw.navalny_sidet)
-        val putinSound = arrayOf(R.raw.putin_derzki, R.raw.putin_parasha)
+        val putinSound = arrayOf(R.raw.putin_sortir, R.raw.putin_parasha)
 
         if (currentPlayer == 1) {
 
@@ -233,6 +260,18 @@ class Board3x3 : Fragment() {
             mp.setOnCompletionListener {
                 mp.release()
             }
+
+        }
+    }
+
+    fun playSoundDraw() {
+
+        val mp: MediaPlayer = MediaPlayer.create(context, R.raw.draw2)
+        mp.setOnPreparedListener {
+            mp.start()
+        }
+        mp.setOnCompletionListener {
+            mp.release()
 
         }
     }

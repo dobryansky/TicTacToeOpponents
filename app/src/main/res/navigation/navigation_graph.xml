@@ -9,17 +9,33 @@
         android:id="@+id/board3x3"
         android:name="com.artem.myapplication.Board3x3"
         android:label="fragment_board3x3"
-        tools:layout="@layout/fragment_board3x3" />
+        tools:layout="@layout/fragment_board3x3" >
+        <action
+            android:id="@+id/action_board3x3_to_startFragment"
+            app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_board3x3_to_scoresFragment4"
+            app:destination="@id/scoresFragment" />
+
+    </fragment>
     <fragment
         android:id="@+id/board4x4"
         android:name="com.artem.myapplication.Board4x4"
         android:label="fragment_board4x4"
-        tools:layout="@layout/fragment_board4x4" />
+        tools:layout="@layout/fragment_board4x4" >
+        <action
+            android:id="@+id/action_board4x4_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
     <fragment
         android:id="@+id/board5x5"
         android:name="com.artem.myapplication.Board5x5"
         android:label="fragment_board5x5"
-        tools:layout="@layout/fragment_board5x5" />
+        tools:layout="@layout/fragment_board5x5" >
+        <action
+            android:id="@+id/action_board5x5_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
     <fragment
         android:id="@+id/startFragment"
         android:name="com.artem.myapplication.StartFragment"
@@ -34,6 +50,12 @@
         <action
             android:id="@+id/action_startFragment_to_board5x5"
             app:destination="@id/board5x5" />
+        <action
+            android:id="@+id/action_startFragment_to_scoresFragment"
+            app:destination="@id/scoresFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_fragmentSettings"
+            app:destination="@id/fragmentSettings" />
     </fragment>
     <fragment
         android:id="@+id/WInFragment"
@@ -44,10 +66,24 @@
         android:id="@+id/fragmentSettings"
         android:name="com.artem.myapplication.FragmentSettings"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_fragmentSettings_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
     <fragment
         android:id="@+id/scoresFragment"
         android:name="com.artem.myapplication.ScoresFragment"
         android:label="fragment_scores"
-        tools:layout="@layout/fragment_scores" />
+        tools:layout="@layout/fragment_scores"
+        >
+        <argument
+            android:name="scorePutin"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="scoreNavalny"
+            app:argType="string"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>
