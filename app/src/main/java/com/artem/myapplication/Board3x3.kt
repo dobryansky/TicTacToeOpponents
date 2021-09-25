@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.artem.myapplication.databinding.FragmentBoard3x3Binding
-import java.util.*
+
 
 
 class Board3x3 : Fragment() {

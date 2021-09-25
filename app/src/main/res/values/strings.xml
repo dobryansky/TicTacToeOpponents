@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TicTacToePutin</string>
+    <string name="app_name">TicTacToeAntogonists</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="defaultValueListPreference">Putin/Navalny</string>
