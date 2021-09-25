@@ -68,6 +68,7 @@ class Board3x3 : Fragment() {
             arrayOf(binding.imgBut4, binding.imgBut5, binding.imgBut6),
             arrayOf(binding.imgBut7, binding.imgBut8, binding.imgBut9)
         )
+        binding.txtInfoTable.text = "Ходит Навальный"
 
         for (i in 0 until btnArray[0].size) {
             for (j in 0 until btnArray[0].size) {

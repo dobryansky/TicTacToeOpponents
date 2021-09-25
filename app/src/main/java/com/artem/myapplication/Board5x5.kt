@@ -94,6 +94,7 @@ class Board5x5 : Fragment() {
                 binding.imageButton25
             )
         )
+        binding.txtInfoTable.text = "Ходит Навальный"
 
         for (i in 0 until btnArray[0].size) {
             for (j in 0 until btnArray[0].size) {
