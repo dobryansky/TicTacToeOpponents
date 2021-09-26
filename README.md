@@ -14,4 +14,5 @@ TicTacToeOpponents is not ready yet, in future i will add
 - improve UI design
 
 This .gif shows gameplay:
+
 ![](TicTacAntogonists.gif)
